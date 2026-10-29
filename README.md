@@ -54,3 +54,11 @@ Visit `/design-lab` for the temporary, noindex component gallery. All ten primit
 
 Fonts are now locally bundled Fontsource packages: Space Grotesk, DM Sans, IBM Plex Mono, and Caveat. Shared semantic colors and component styles live in `src/app/globals.css`; gallery-only layout lives in `src/app/design-lab/lab.css`. The focus-ring specimen is explicitly illustrative; keyboard focus also works on every enabled control. The bookmark demonstration is temporary page state, not persistent storage.
 
+
+## Interactive homepage hero
+
+The homepage remains a hero-only composition. `ScrapbookDesk` composes existing paper primitives; `ArtifactPreview` provides reusable native modal dialogs with focus containment, focus restoration, Escape, backdrop dismissal, and scroll locking. `EngineeringChecklist` and `HackathonTicket` keep state in React for this page only. Motion is limited to brief strokes, an unfolding preview, and a restrained ticket flip; reduced-motion preferences disable these movements. Hover movement is restricted to fine pointers.
+
+The CampusOS print is visibly labeled as a screenshot placeholder. The small photo is also an explicit placeholder. Supply actual assets before replacing either. CampusOS has an in-preview case-study notes link; no external case-study URL has been invented. The architecture view is a conceptual summary of the resume, not a verified deployment diagram. Project facts live in `src/content/projects.ts`.
+
+Verified in browser at 1440px, 1024px, 768px, 390px, and 320px, including modal opening/closing, keyboard activation, Escape focus restoration, case-study navigation, checklist toggling, ticket flipping, and page-local state reset. Reduced-motion handling is implemented in CSS and Motion; OS-level reduced-motion emulation was not available in this browser session.
