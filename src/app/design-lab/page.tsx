@@ -1,0 +1,19 @@
+import type { Metadata } from "next";
+import { PaperCard, PolaroidCard, StickyNote, PaperTape, DoodleArrow, SectionLabel, HandwrittenNote, ProjectStamp, PaperDivider } from "@/components/ui/scrapbook";
+import { InteractionSamples } from "./samples";
+import "./lab.css";
+export const metadata: Metadata = { title: "Design lab", robots: { index: false, follow: false } };
+const colors = [["Paper", "#F6F2E9"], ["Ink", "#252520"], ["Cobalt", "#315BD9"], ["Tomato", "#ED694B"], ["Butter", "#F5D77E"], ["Sage", "#C9DCCB"]];
+export default function DesignLab() {
+ return <div className="design-lab page-width">
+  <SectionLabel index="00">The Internet Scrapbook · Material studies</SectionLabel>
+  <header className="lab-heading"><h1>A little order.<br /><span>A little instinct.</span></h1><div><ProjectStamp>Design lab / 01</ProjectStamp><p>A working collection of type, paper, color, and small interactions. The ingredients of a personal internet.</p><HandwrittenNote>Leave room for the unexpected.</HandwrittenNote></div></header>
+  <PaperDivider variant="rough" />
+  <section aria-labelledby="palette"><SectionLabel index="01">Color & character</SectionLabel><h2 id="palette">Collected, not coordinated.</h2><div className="swatches">{colors.map(([name,hex])=><div key={name}><div className="swatch" style={{background:hex}} /><strong>{name}</strong><code>{hex}</code></div>)}</div></section>
+  <section aria-labelledby="type"><SectionLabel index="02">A voice in four registers</SectionLabel><h2 id="type">Good type does the talking.</h2><div className="type-grid"><PaperCard className="specimen"><SectionLabel>Space Grotesk / Display</SectionLabel><p className="type-display">Ideas worth<br />keeping.</p></PaperCard><div className="type-notes"><SectionLabel>DM Sans / Body</SectionLabel><p>A scrapbook has room for finished things and loose ends. Clear, generous text gives every thought a place to land.</p><SectionLabel>IBM Plex Mono / Metadata</SectionLabel><code>FIELD NOTES — ISSUE 001</code><HandwrittenNote>Caveat / a thought in the margin</HandwrittenNote></div></div></section>
+  <PaperDivider />
+  <section aria-labelledby="surfaces"><SectionLabel index="03">The paper drawer</SectionLabel><h2 id="surfaces">Different textures. Same story.</h2><div className="paper-grid"><PaperCard surface="ruled" tilt="left" className="specimen"><PaperTape /><SectionLabel>Field note / 01</SectionLabel><h3>Make space<br />to explore.</h3><p>One thought per page. Enough breathing room to find the next one.</p><ProjectStamp>Notebook study</ProjectStamp></PaperCard><PolaroidCard caption="An imaginary window, drawn in CSS." tilt="right"><div className="window-study" role="img" aria-label="Abstract cobalt window with a butter yellow sun and sage landscape"><span /></div></PolaroidCard><StickyNote><SectionLabel>A small reminder</SectionLabel><h3>Keep the useful.<br />Keep the curious.</h3><HandwrittenNote>Polish the details,<br />keep the personality.</HandwrittenNote><DoodleArrow /></StickyNote><StickyNote tone="sage" tilt="casual"><SectionLabel>Next time</SectionLabel><h3>Look a little closer.</h3><p>Texture should reward attention without getting in the way of reading.</p></StickyNote><PaperCard surface="grid" elevation="lifted" className="specimen"><SectionLabel>Sketchbook / 02</SectionLabel><h3>Structure underneath.<br />Freedom on top.</h3><DoodleArrow direction="down" /><ProjectStamp>Layout experiment</ProjectStamp></PaperCard><StickyNote tone="tomato" tilt="none"><SectionLabel>Note to self</SectionLabel><h3>One bold detail<br />is often enough.</h3><p>Use warm accents sparingly. Let the paper do the rest.</p></StickyNote></div></section>
+  <PaperDivider variant="rough" />
+  <section aria-labelledby="interaction"><SectionLabel index="04">Small gestures</SectionLabel><h2 id="interaction">Made to be used.</h2><p>Hover to lift. Tab to see focus. Press to leave a bookmark.</p><InteractionSamples /></section>
+ </div>;
+}

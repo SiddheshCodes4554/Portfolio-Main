@@ -4,6 +4,10 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { MotionProvider } from "@/components/ui/motion-provider";
 import { siteContent } from "@/content/site";
+import "@fontsource-variable/space-grotesk/index.css";
+import "@fontsource-variable/dm-sans/index.css";
+import "@fontsource/ibm-plex-mono/latin-400.css";
+import "@fontsource-variable/caveat/index.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -28,3 +32,5 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     </html>
   );
 }
+
+

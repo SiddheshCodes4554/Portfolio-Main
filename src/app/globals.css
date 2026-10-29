@@ -2,17 +2,17 @@
 
 /* Semantic design tokens, exposed as Tailwind utilities through @theme. */
 @theme {
-  --color-paper: #f5f2e9;
+  --color-paper: #F6F2E9;
   --color-sheet: #fffdf7;
-  --color-ink: #242420;
+  --color-ink: #252520;
   --color-muted: #62625a;
-  --color-cobalt: #254ad6;
+  --color-cobalt: #315BD9;
   --color-rule: #d4d0c4;
-  --color-tape: #e9dfbf;
-  --font-sans: Arial, Helvetica, sans-serif;
-  --font-editorial: Georgia, "Times New Roman", serif;
-  --font-hand: "Segoe Print", "Bradley Hand", cursive;
-  --font-mono: "Courier New", monospace;
+  --color-tape: #e9dfbf; --color-tomato: #ED694B; --color-butter: #F5D77E; --color-sage: #C9DCCB;
+  --font-sans: "DM Sans Variable", Arial, sans-serif;
+  --font-editorial: "Space Grotesk Variable", sans-serif;
+  --font-hand: "Caveat Variable", cursive;
+  --font-mono: "IBM Plex Mono", monospace;
   --shadow-paper: 0 2px 3px #24242008, 0 12px 28px #2424200b;
   --radius-paper: 2px;
   --spacing-gutter: clamp(1.25rem, 5vw, 5rem);
@@ -78,3 +78,21 @@ h1 { font: normal clamp(3.5rem, 7.6vw, 7rem)/.98 var(--font-editorial); letter-s
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* Shared scrapbook primitives. Colorful surfaces retain dark ink for contrast. */
+.tilt-none { --paper-angle: 0deg; }.tilt-left { --paper-angle: -1.6deg; }.tilt-right { --paper-angle: 1.2deg; }.tilt-casual { --paper-angle: -.7deg; }
+.paper-card,.polaroid,.sticky-note { position: relative; transform: rotate(var(--paper-angle,0deg)); }
+.elevation-flat { box-shadow: 0 2px 3px #2525200a; }.elevation-lifted { box-shadow: var(--shadow-paper); }
+.surface-ruled { background-image: repeating-linear-gradient(transparent 0 31px,#315bd915 31px 32px); }
+.surface-grid { background-image: linear-gradient(#315bd912 1px,transparent 1px),linear-gradient(90deg,#315bd912 1px,transparent 1px); background-size: 24px 24px; }
+.scrap-tape { display:block; position:absolute; width:90px; height:29px; top:-14px; left:calc(50% - 45px); background:var(--color-tape); opacity:.85; transform:rotate(-5deg); clip-path:polygon(2% 0,98% 3%,96% 30%,100% 70%,97% 100%,0 97%,3% 60%,0 15%); pointer-events:none; }.tape-blue { background:#b8c8ef; }
+.polaroid { margin:0; padding:12px 12px 22px; background:var(--color-sheet); box-shadow:2px 5px 0 #2525200a,0 10px 20px #25252010; border:1px solid var(--color-rule); }.polaroid-image { aspect-ratio:1; overflow:hidden; background:var(--color-sage); }.polaroid figcaption { font-family:var(--font-hand); font-size:1.5rem; margin:16px 8px 0; line-height:1.2; }
+.sticky-note { padding:2rem; background:var(--color-butter); box-shadow:0 8px 0 -5px #25252015; border-top:20px solid #25252006; }.sticky-sage { background:var(--color-sage); }.sticky-tomato { background:var(--color-tomato); }
+.doodle-arrow { width:100px; height:55px; color:var(--color-cobalt); }.arrow-down { transform:rotate(55deg); margin:1rem; }
+.section-label { font:400 .7rem/1.7 var(--font-mono); letter-spacing:.08em; text-transform:uppercase; margin:0 0 1.2rem; }.section-label > span { color:var(--color-cobalt); }
+.scrapbook-button { min-height:48px; padding:12px 20px; border:1px solid transparent; font:600 .9rem/1.5 var(--font-sans); cursor:pointer; background:var(--color-cobalt); color:var(--color-sheet); box-shadow:2px 3px 0 var(--color-ink); transition:transform var(--duration-fast),box-shadow var(--duration-fast); }.button-secondary { background:var(--color-sheet); color:var(--color-ink); border-color:var(--color-ink); }.button-quiet { background:transparent; color:var(--color-ink); box-shadow:none; text-decoration:underline; text-underline-offset:4px; }.scrapbook-button:disabled { color:var(--color-muted); cursor:not-allowed; box-shadow:none; border-color:var(--color-rule); text-decoration:none; }.scrapbook-button:focus-visible { outline:3px solid var(--color-cobalt); outline-offset:5px; }.scrapbook-button:active:not(:disabled) { transform:translate(2px,2px); box-shadow:none; }
+@media (hover:hover) { .scrapbook-button:hover:not(:disabled) { transform:translateY(-2px); box-shadow:3px 5px 0 var(--color-ink); } }
+.handwritten-note { font:500 1.8rem/1.15 var(--font-hand); color:var(--color-cobalt); margin:1.5rem 0; }.sticky-tomato .handwritten-note { color:var(--color-ink); }
+.project-stamp { display:inline-block; padding:7px 10px; border:1px solid currentColor; outline:1px solid currentColor; outline-offset:-4px; color:var(--color-cobalt); font:.65rem/1.5 var(--font-mono); letter-spacing:.08em; text-transform:uppercase; }
+.paper-divider { border:0; border-top:1px dashed var(--color-rule); margin:3rem 0; }.divider-rough { height:8px; border:0; background:var(--color-rule); clip-path:polygon(0 40%,12% 55%,21% 30%,36% 60%,52% 25%,68% 55%,85% 35%,100% 50%,100% 65%,85% 50%,68% 70%,52% 40%,36% 75%,21% 45%,12% 70%,0 55%); }
+@media (prefers-reduced-motion:reduce) { .scrapbook-button:hover:not(:disabled),.scrapbook-button:active:not(:disabled) { transform:none; } }

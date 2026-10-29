@@ -36,7 +36,7 @@ src/
 reference/resume.pdf   Local factual source (ignored by Git)
 ```
 
-Tailwind v4 exposes the semantic tokens from `src/app/globals.css` as utilities such as `bg-paper`, `text-cobalt`, `font-editorial`, and `shadow-paper`. Fonts use system stacks so builds do not depend on a font CDN. Most components render on the server; the Motion configuration is the only client boundary.
+Tailwind v4 exposes the semantic tokens from `src/app/globals.css` as utilities such as `bg-paper`, `text-cobalt`, `font-editorial`, and `shadow-paper`. Fonts are bundled locally so builds do not depend on a font CDN. Most components render on the server; the Motion configuration is the only client boundary.
 
 ## Content and accessibility
 
@@ -47,3 +47,10 @@ The shell includes semantic landmarks, a skip link, visible keyboard focus, resp
 ## Git workflow
 
 Keep verified changes in coherent commits and push them to the configured origin as the portfolio develops. Never force-push or commit secrets. Hosting and deployment are outside this initial foundation milestone.
+
+## Design system preview
+
+Visit `/design-lab` for the temporary, noindex component gallery. All ten primitives are exported from `src/components/ui/scrapbook.tsx`; the existing PaperCard import remains compatible. PaperCard supports surface, tilt, and elevation variants. PolaroidCard requires a caption; supply accessible image content as children. PaperTape and DoodleArrow are decorative. ScrapbookButton uses native button props and disabled/pressed semantics.
+
+Fonts are now locally bundled Fontsource packages: Space Grotesk, DM Sans, IBM Plex Mono, and Caveat. Shared semantic colors and component styles live in `src/app/globals.css`; gallery-only layout lives in `src/app/design-lab/lab.css`. The focus-ring specimen is explicitly illustrative; keyboard focus also works on every enabled control. The bookmark demonstration is temporary page state, not persistent storage.
+
