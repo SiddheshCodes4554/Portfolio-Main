@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* Semantic design tokens, exposed as Tailwind utilities through @theme. */
+@theme {
+  --color-paper: #f5f2e9;
+  --color-sheet: #fffdf7;
+  --color-ink: #242420;
+  --color-muted: #62625a;
+  --color-cobalt: #254ad6;
+  --color-rule: #d4d0c4;
+  --color-tape: #e9dfbf;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-editorial: Georgia, "Times New Roman", serif;
+  --font-hand: "Segoe Print", "Bradley Hand", cursive;
+  --font-mono: "Courier New", monospace;
+  --shadow-paper: 0 2px 3px #24242008, 0 12px 28px #2424200b;
+  --radius-paper: 2px;
+  --spacing-gutter: clamp(1.25rem, 5vw, 5rem);
+  --spacing-section: clamp(3rem, 8vw, 7rem);
+  --ease-paper: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-none: none;
+}
+
+:root { --content-width: 80rem; --duration-fast: 180ms; }
+* { box-sizing: border-box; }
+html { background: var(--color-paper); color: var(--color-ink); }
+body { margin: 0; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .15; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23808080' filter='url(%23n)' opacity='.25' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); }
+::selection { background: var(--color-cobalt); color: var(--color-sheet); }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .3em; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--color-cobalt); outline-offset: 6px; }
+.page-width { width: min(100% - var(--spacing-gutter) * 2, var(--content-width)); margin-inline: auto; }
+.site-shell { min-height: 100svh; display: flex; flex-direction: column; }
+main { flex: 1; }
+.skip-link { position: fixed; left: 1rem; top: 1rem; z-index: 10; padding: .8rem 1rem; background: var(--color-sheet); transform: translateY(-200%); }
+.skip-link:focus { transform: translateY(0); }
+.site-header { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 7.5rem; border-bottom: 1px solid var(--color-rule); }
+.wordmark { display: inline-flex; gap: .8rem; align-items: center; text-decoration: none; font-size: .85rem; font-weight: 600; }
+.wordmark-stamp { display: grid; place-items: center; width: 2.7rem; height: 2.7rem; background: var(--color-cobalt); color: var(--color-sheet); font: italic 1.65rem var(--font-editorial); transform: rotate(-6deg); }
+.wordmark-caption { display: block; margin-top: .3rem; color: var(--color-muted); font-size: .7rem; font-weight: 400; }
+.text-link { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; font-size: .8rem; text-decoration: none; transition: color var(--duration-fast); }
+.text-link:hover { color: var(--color-cobalt); text-decoration: underline; }
+.cover { display: grid; grid-template-columns: 1fr .57fr; align-items: center; gap: clamp(2rem, 5vw, 5rem); padding-block: var(--spacing-section); }
+.eyebrow { font: .65rem/1.6 var(--font-mono); letter-spacing: .11em; text-transform: uppercase; }
+.cover-intro > .eyebrow { display: flex; align-items: center; gap: .6rem; margin: 0 0 2rem; }
+.ink-dot { width: .4rem; height: .4rem; border-radius: 50%; background: var(--color-cobalt); flex-shrink: 0; }
+h1 { font: normal clamp(3.5rem, 7.6vw, 7rem)/.98 var(--font-editorial); letter-spacing: -.065em; margin: 0 0 3.5rem; }
+.title-last { position: relative; display: inline-block; font-style: italic; }
+.title-underline { position: absolute; width: 94%; height: .22em; bottom: -.22em; left: .03em; color: var(--color-cobalt); }
+.title-period { color: var(--color-cobalt); }
+.intro-bottom { display: flex; gap: 2rem; align-items: flex-end; }
+.intro-copy { max-width: 21rem; margin: 0; color: var(--color-muted); font-size: .95rem; line-height: 1.8; }
+.edition-mark { margin-bottom: .3rem; font: .55rem/1.8 var(--font-mono); color: var(--color-muted); white-space: nowrap; }
+.cover-aside { padding: 1.5rem .8rem 0; }
+.handwritten { font: 1.1rem/1.5 var(--font-hand); color: var(--color-cobalt); }
+.aside-caption { display: block; margin-bottom: 1.7rem; text-align: right; transform: rotate(-5deg); }
+.paper-card { background: var(--color-sheet); border: 1px solid var(--color-rule); border-radius: var(--radius-paper); box-shadow: var(--shadow-paper); }
+.welcome-note { position: relative; transform: rotate(2.5deg); padding: clamp(1.5rem, 3vw, 3rem); }
+.paper-tape { position: absolute; left: 34%; top: -.8rem; width: 6rem; height: 1.8rem; background: var(--color-tape); opacity: .8; transform: rotate(-8deg); clip-path: polygon(2% 0, 97% 3%, 100% 95%, 0 100%, 3% 65%, 0 35%); }
+.note-asterisk { color: var(--color-cobalt); margin-bottom: 1rem; }
+.welcome-note h2 { margin: .8rem 0 1.3rem; font: normal clamp(2rem, 3vw, 3rem)/1.05 var(--font-editorial); letter-spacing: -.04em; }
+.welcome-note > p:not(.eyebrow) { color: var(--color-muted); font-size: .85rem; line-height: 1.8; max-width: 18rem; }
+.note-signature { display: flex; flex-direction: column; gap: .2rem; margin-top: 1.8rem; font-size: .8rem; }
+.collection-note { display: flex; align-items: center; gap: .6rem; margin: 2rem 0 0 1rem; color: var(--color-muted); font: .65rem/1.5 var(--font-mono); }
+.site-footer { display: flex; justify-content: space-between; gap: 1rem; padding-block: 1.5rem; border-top: 1px solid var(--color-rule); color: var(--color-muted); font: .65rem/1.6 var(--font-mono); }
+.footer-note { font-family: var(--font-hand); font-size: .9rem; color: var(--color-cobalt); }
+@media (min-width: 1440px) { .cover { padding-block: 8rem; } }
+@media (max-width: 1000px) { .edition-mark { display: none; } }
+@media (max-width: 720px) {
+  .site-header { min-height: 6rem; }
+  .cover { grid-template-columns: 1fr; gap: 3rem; }
+  h1 { font-size: clamp(3.5rem, 12vw, 5.4rem); }
+  .cover-aside { width: min(100%, 25rem); justify-self: center; padding-inline: .5rem; }
+  .intro-copy { max-width: 26rem; }
+  .welcome-note { padding: 2rem; }
+  .site-footer { flex-direction: column; gap: .4rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

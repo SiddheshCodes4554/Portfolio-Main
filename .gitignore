@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+dist/
+.env*
+!.env.example
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+Thumbs.db
+tmp/
+*.log
+# Private factual source; do not publish personal contact details by accident.
+reference/*.pdf
