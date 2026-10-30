@@ -84,3 +84,11 @@ Browser checks: desktop 1440px, tablet 768px, mobile 390px; graph selection, top
 ## Supplied project captures and repositories
 
 All three archive notebooks and case-study pages now use owner-supplied local PNG captures under `public/images/projects/`, with descriptive alt text, responsive Next.js image optimization, uncropped proportions, and links to full-size originals. Repository URLs are stored alongside each typed project entry. The interactive graph/radar/journal remain distinct from the product captures. Hero composition and its placeholder are unchanged in this archive-only asset update. Repository links are owner-supplied destinations; no unverified implementation facts have been inferred from them. Ingress Within's project-specific stack remains unspecified.
+
+## The Engineer’s Notebook — Vol. 03
+
+The homepage now appends `EngineersNotebook` after the unchanged hero and archive. `src/content/notebook.ts` is the typed, editable source for three story entries, 22 toolbox tags, four journey connections, and three foldable notes. Facts and project attribution follow the local resume; generic technology descriptions are distinguished from personal project use. Personal interests and future plans remain explicitly labeled editable notes. The hackathon node has no fabricated date, and the circuit is explicitly not a chronological scale.
+
+Desktop/tablet show facing pages. At 650px and below, keyboard-operable page tabs reveal one leaf at a time. Both leaves, story pages, and tool categories remain mounted to preserve selections. The native details notes remain functional without JavaScript; additional no-JavaScript content includes the remaining story and skills. Paper turns and kit unfolding use reduced-motion-aware Motion; decorative SVGs are hidden from assistive technology.
+
+QA: actual screenshots at 1440, 1024, 768, and 390px; all three story entries, all four journey nodes, all four toolbox categories and 22 tool tags, native note opening/closing, keyboard page/category navigation, tool attribution links, and selection retention across toolbox closure and mobile page switching. No horizontal overflow was observed. OS-level reduced-motion emulation was unavailable; the reduced-motion branches were inspected in source.
