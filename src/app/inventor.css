@@ -85,3 +85,18 @@ body:has(.hero) .site-footer { padding-block:10px; min-height:44px; }
 }
 @media(prefers-reduced-motion:reduce) { .lamp-light { transition:none; } }
 @media(min-width:541px) { .mini-terminal { width:35%; } }
+/* Shared cause and effect: the light falls on the work; the circuit powers it. */
+.hero-desk::before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(ellipse 48% 42% at 50% 45%,#f5d77e65,transparent 100%); opacity:0; transition:opacity .25s ease; }
+.hero-desk:has(.lamp-on)::before { opacity:1; }
+.lamp-on::after { display:none; }
+.campus-print,.aeris-paper { transition:background-color .25s,translate .22s,box-shadow .22s; }
+.hero-desk:has(.lamp-on) .campus-print,.hero-desk:has(.lamp-on) .aeris-paper { background-color:#fff9e9; }
+.desk-wire { position:absolute; left:28%; width:6%; top:69%; height:12px; border-bottom:2px solid var(--color-muted); border-right:2px solid var(--color-muted); border-radius:0 0 8px 0; z-index:-1; }
+.desk-powered .desk-wire { border-color:var(--color-cobalt); }
+.terminal-standby { min-height:128px; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:10px; gap:5px; }
+.terminal-standby p { font:.73rem/1.6 var(--font-mono); margin:0; }
+.terminal-standby button { color:var(--color-butter); text-decoration:underline; text-underline-offset:4px; font:.7rem var(--font-mono); padding:0; text-align:left; }
+.terminal-standby span { font:.6rem/1.5 var(--font-mono); color:var(--color-rule); }
+.terminal-powered .terminal-title > span { color:var(--color-sage); }
+@media(max-width:540px) { .hero-desk .desk-wire { display:none; }.hero-desk::before { background:radial-gradient(ellipse at 50% 23%,#f5d77e50,transparent 52%); } }
+@media(prefers-reduced-motion:reduce) { .hero-desk::before,.campus-print,.aeris-paper { transition:none; } }

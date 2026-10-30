@@ -1,3 +1,4 @@
+import { WorkbenchPower } from "./workbench-power";
 import { DeskLamp, MiniCircuit, MiniTerminal } from "./workbench";
 import { ArrowUpRight } from "lucide-react";
 import { PaperCard, PolaroidCard, PaperTape, HandwrittenNote, SectionLabel } from "@/components/ui/scrapbook";
@@ -49,7 +50,7 @@ function AerisPreview() {
 }
 
 export function ScrapbookDesk() {
-  return <div className="hero-desk" aria-label="Interactive scrapbook collection">
+  return <WorkbenchPower>
     <DeskLamp />
     <HandwrittenNote className="desk-discovery">switch it on. open it up. try a command. ↗</HandwrittenNote>
     <ArtifactPreview title="CampusOS" action="Open CampusOS project preview" className="campus-artifact" preview={<CampusPreview />}>
@@ -62,5 +63,5 @@ export function ScrapbookDesk() {
     <MiniTerminal />
 
     <HackathonTicket />
-  </div>;
+  </WorkbenchPower>;
 }
