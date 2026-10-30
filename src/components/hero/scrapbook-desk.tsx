@@ -1,7 +1,8 @@
-import { Camera, ArrowUpRight } from "lucide-react";
+import { DeskLamp, MiniCircuit, MiniTerminal } from "./workbench";
+import { ArrowUpRight } from "lucide-react";
 import { PaperCard, PolaroidCard, PaperTape, HandwrittenNote, SectionLabel } from "@/components/ui/scrapbook";
 import { ArtifactPreview } from "./artifact-preview";
-import { EngineeringChecklist, HackathonTicket } from "./paper-interactions";
+import { HackathonTicket } from "./paper-interactions";
 import { projects } from "@/content/projects";
 
 function CampusPlaceholder() {
@@ -49,15 +50,17 @@ function AerisPreview() {
 
 export function ScrapbookDesk() {
   return <div className="hero-desk" aria-label="Interactive scrapbook collection">
-    <HandwrittenNote className="desk-discovery">psst... try clicking things ↗</HandwrittenNote>
+    <DeskLamp />
+    <HandwrittenNote className="desk-discovery">switch it on. open it up. try a command. ↗</HandwrittenNote>
     <ArtifactPreview title="CampusOS" action="Open CampusOS project preview" className="campus-artifact" preview={<CampusPreview />}>
       <PolaroidCard tilt="left" className="campus-print" caption={<><strong>CampusOS</strong><span>A student command center. <span aria-hidden="true">↗</span></span></>}><CampusPlaceholder /></PolaroidCard><PaperTape />
     </ArtifactPreview>
     <ArtifactPreview title="AERIS / unfold the system" action="Unfold AERIS architecture sketch" className="aeris-artifact" preview={<AerisPreview />}>
       <PaperCard surface="grid" tilt="casual" className="aeris-paper"><SectionLabel>Field sketch / 02</SectionLabel><h2>AERIS</h2><p>Rescue. Observe. Respond.</p><ArchitectureSketch /><span className="open-me">open me ↗</span></PaperCard>
     </ArtifactPreview>
-    <EngineeringChecklist />
-    <PolaroidCard tilt="right" className="personal-photo" caption="a human goes here."><div className="photo-placeholder"><Camera size={27} strokeWidth={1.2} aria-hidden="true" /><span>Personal photo<br />placeholder</span></div></PolaroidCard>
+    <MiniCircuit />
+    <MiniTerminal />
+
     <HackathonTicket />
   </div>;
 }

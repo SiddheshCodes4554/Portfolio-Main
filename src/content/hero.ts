@@ -1,6 +1,6 @@
 // Identity, location, project, and achievement verified against reference/resume.pdf.
 export const heroContent = {
-  greeting: "Oh, hey! I'm Siddhesh.",
+  greeting: "Hey, I'm Siddhesh.",
   headline: "I make things for the internet.",
   introduction: "Full-stack developer, AI tinkerer, and a curious human turning interesting ideas into working products.",
   location: "Pune, India",
