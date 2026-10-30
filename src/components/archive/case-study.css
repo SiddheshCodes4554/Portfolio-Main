@@ -1,0 +1,13 @@
+.case-study { padding-block:3rem 5rem; max-width:68rem; }
+.case-back { display:inline-flex; min-height:44px; align-items:center; margin-bottom:2rem; font-size:.85rem; color:var(--color-cobalt); }
+.case-study h1 { font:500 clamp(3rem,7vw,6rem)/1 var(--font-editorial); letter-spacing:-.06em; margin:0 0 1rem; overflow-wrap:anywhere; }
+.case-subtitle { font-size:1.3rem; line-height:1.5; max-width:36rem; }
+.case-lede { font-size:1.1rem; line-height:1.9; max-width:46rem; color:var(--color-muted); }
+.case-study-body { display:grid; grid-template-columns:1.5fr 1fr; gap:4rem; border-top:1px solid var(--color-rule); margin-top:3rem; padding-top:2rem; }
+.case-study-body h2 { font:500 1.6rem/1.3 var(--font-editorial); margin:0 0 1.5rem; }
+.case-study-body h3 { font:500 1.2rem var(--font-editorial); margin:1.8rem 0 .7rem; }
+.case-study-body p { font:.95rem/1.9 var(--font-sans); }
+.case-study-body ul { list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:10px; }
+.case-study-body li { font:.75rem/1.7 var(--font-mono); border-bottom:1px solid var(--color-rule); padding:5px; }
+.case-study-body .case-asset-note { font-size:.8rem; color:var(--color-muted); margin-top:2rem; }
+@media(max-width:650px) { .case-study-body { grid-template-columns:1fr; gap:2rem; } }

@@ -72,3 +72,11 @@ Browser QA for this milestone: actual screenshots at 1440×900, 1366×768, 768×
 ## Connected workbench behavior
 
 The lamp now illuminates the project papers and surrounding desk, rather than only its own drawing. Shared `WorkbenchPower` state connects the circuit switch, LED, cable, and terminal. The terminal starts in standby; either the circuit switch or its boot button powers it on. Booting from the terminal transfers focus to the command field. Power cycling preserves command history for the page session. The mobile cable is omitted, while the labels retain the causal connection. Verified with mouse and keyboard power cycling, history preservation, lamp on/off, mobile overflow, and desktop viewport fit.
+
+## Project Archive — Vol. 02
+
+The hero markup and hero styles are unchanged. The homepage appends `ProjectArchive` below the desk, with a separate transition into the notebooks. `src/content/projects.ts` provides typed archive content and the existing hero project facts. Three local `/projects/*` case-study routes use the same data; no external URLs or metrics are invented. Ingress Within has verified responsibility areas instead of an unsupported technology stack.
+
+The archive uses a roving tab stop with Arrow keys, Home, and End. All panels stay mounted, so graph selection, journal position, and scan preference survive tab changes. Radar animation stops when its panel is inactive and under reduced motion. Journal boundary controls use aria-disabled with guarded actions to preserve keyboard focus. No-JavaScript visitors have links to all three case-study pages.
+
+Browser checks: desktop 1440px, tablet 768px, mobile 390px; graph selection, topic/edge highlighting, radar start/pause, keyboard tab switching, journal forward/back/boundaries, state retention, and case-study navigation. All three routes return HTTP 200. Real project screenshots and an Ingress-specific technology list were not supplied; demos are labeled as illustrative, and no private product material is used. OS reduced-motion emulation was unavailable; reduced-motion handling was inspected in code.
