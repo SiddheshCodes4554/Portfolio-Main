@@ -2,6 +2,7 @@
 import { createHmac } from "node:crypto";
 import { isIP } from "node:net";
 import { contactLimits, validatePayload, type ContactPayload } from "./schema.ts";
+import { postcardEmail } from "./email.ts";
 
 type Environment = Record<string, string | undefined>;
 type Config = { apiKey:string; from:string; to:string; origin:string; redisUrl:string; redisToken:string; secret:string; ipHeader:string };
@@ -43,9 +44,9 @@ async function rateLimit(ip: string, config: Config, fetcher: Fetch) {
   return {allowed:body.result[0]<=5, retryAfter:Math.max(1,body.result[1])};
 }
 export async function sendPostcard(data: ContactPayload, config: Config, fetcher: Fetch) {
-  // Plain text avoids HTML injection. Visitor input is never used for sender/recipient headers.
+  // HTML escapes all visitor content; text remains a fallback. Headers stay server-controlled.
   const key = createHmac("sha256",config.secret).update(JSON.stringify([data.requestId,data.name,data.email,data.message,data.stamp])).digest("hex");
-  const response = await fetcher("https://api.resend.com/emails",{method:"POST",headers:{Authorization:`Bearer ${config.apiKey}`,"Content-Type":"application/json","Idempotency-Key":`postcard/${key}`},body:JSON.stringify({from:config.from,to:[config.to],reply_to:data.email,subject:"A postcard from The Internet Scrapbook",text:`From: ${data.name}\nReply to: ${data.email}\nStamp: ${data.stamp}\n\n${data.message}`}),signal:AbortSignal.timeout(8000)});
+  const response = await fetcher("https://api.resend.com/emails",{method:"POST",headers:{Authorization:`Bearer ${config.apiKey}`,"Content-Type":"application/json","Idempotency-Key":`postcard/${key}`},body:JSON.stringify({from:config.from,to:[config.to],reply_to:data.email,subject:"A postcard from The Internet Scrapbook",...postcardEmail(data)}),signal:AbortSignal.timeout(8000)});
   const result = await response.json() as {id?:unknown};
   if(!response.ok || typeof result.id!=="string" || !result.id) throw new Error("provider");
   return result.id;

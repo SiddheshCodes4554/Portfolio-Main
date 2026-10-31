@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { handleContact, contactConfig } from '../src/lib/contact/server.ts';
 import { validatePayload } from '../src/lib/contact/schema.ts';
+import { postcardEmail } from '../src/lib/contact/email.ts';
 
 // Entirely local fakes. Never read process.env and never use global fetch in these tests.
 const env={RESEND_API_KEY:'test-only-not-a-real-key',CONTACT_FROM_EMAIL:'Test <post@example.com>',CONTACT_TO_EMAIL:'owner@example.com',CONTACT_ORIGIN:'https://scrapbook.example',UPSTASH_REDIS_REST_URL:'https://redis.example',UPSTASH_REDIS_REST_TOKEN:'test-only',CONTACT_RATE_LIMIT_SECRET:'a-test-secret-with-at-least-32-characters',VERCEL:'1'};
@@ -53,6 +54,16 @@ test('confirmed success uses safe plain text and stable retry idempotency',async
   const fetcher=async(url,init)=>{calls.push({url,init});if(url===env.UPSTASH_REDIS_REST_URL)return json({result:[1,600]});keys.push(init.headers['Idempotency-Key']);return json({id:'mock-confirmed'});};
   for(let i=0;i<2;i++){const result=await handleContact(request(data),env,fetcher);assert.equal(result.status,200);assert.equal((await result.json()).ok,true);}
   assert.equal(keys[0],keys[1]);const email=JSON.parse(calls.find(c=>c.url.includes('resend')).init.body);
-  assert.equal(email.html,undefined);assert.ok(email.text.includes('<script>'));assert.deepEqual(email.to,[env.CONTACT_TO_EMAIL]);assert.equal(email.reply_to,data.email);
+  assert.ok(email.html.includes('&lt;script&gt;'));assert.ok(!email.html.includes('<script>'));assert.ok(email.text.includes('<script>'));assert.deepEqual(email.to,[env.CONTACT_TO_EMAIL]);assert.equal(email.reply_to,data.email);
   assert.ok(!calls[0].init.body.includes('203.0.113.10')); // Only a keyed hash is stored.
+});
+test('postcard email escapes visitor markup, preserves lines and renders each stamp',()=>{
+  for(const [stamp,label] of [['star','STAR'],['heart','HEART'],['bolt','LIGHTNING']]) {
+    const email=postcardEmail(payload({stamp,name:'<img src=x onerror="oops"> & friends',message:'First line\r\nSecond line\n<a href="https://evil.example">text</a>'}));
+    assert.ok(email.html.includes(label));assert.ok(email.html.includes('First line<br />Second line<br />'));
+    assert.ok(!email.html.includes('<img'));assert.ok(!email.html.includes('<a href="https://evil.example">'));
+    assert.ok(email.html.includes('&lt;img src=x onerror=&quot;oops&quot;&gt; &amp; friends'));
+    assert.ok(email.html.includes('mailto:visitor%40example.com'));assert.ok(email.text.includes('First line\r\nSecond line'));
+    assert.ok(!/src=|@import|<script/i.test(email.html.replaceAll('src=x','')));
+  }
 });
