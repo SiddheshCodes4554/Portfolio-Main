@@ -1,0 +1,151 @@
+/* Vol. 04: five instruments, five silhouettes. Shared ink, paper and controls. */
+.little-lab { --lab-gap:clamp(18px,2.2vw,30px); --lab-line:1px solid var(--color-rule); padding-block:3rem 5rem; scroll-margin-top:24px; }
+.lab-heading { border-top:var(--lab-line); padding-top:3.5rem; margin-bottom:3.5rem; }
+.lab-heading-line { display:flex; justify-content:space-between; align-items:baseline; gap:24px; }
+.lab-heading h2 { display:flex; align-items:center; gap:24px; font:500 clamp(3.5rem,7vw,6rem)/1 var(--font-editorial); letter-spacing:-.065em; margin:0; }
+.lab-heading h2 > span { color:var(--color-cobalt); font-size:.7em; font-weight:400; }
+.lab-heading-line > p { font:400 1.1rem/1.5 var(--font-sans); color:var(--color-muted); }
+.lab-heading > .handwritten-note { margin:24px 0 0 3%; font-size:1.65rem; transform:rotate(-1deg); }
+.lab-workbench { display:grid; grid-template-columns:1.24fr 1fr 1fr; gap:var(--lab-gap); align-items:start; position:relative; padding:16px 0 0; }
+.lab-gadget { min-width:0; position:relative; color:var(--color-ink); }
+.lab-gadget h3 { font:500 clamp(1.45rem,2vw,1.85rem)/1.1 var(--font-editorial); letter-spacing:-.045em; margin:15px 0 12px; }
+.gadget-header { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.lab-label { font:.57rem/1.6 var(--font-mono); letter-spacing:.055em; }
+.gadget-intro { font:.85rem/1.65 var(--font-sans); color:var(--color-muted); margin:0 0 18px; }
+.lab-help { font:.7rem/1.65 var(--font-sans); color:var(--color-muted); margin:15px 0 0; }
+.lab-status { font:.68rem/1.65 var(--font-mono); color:var(--color-muted); margin:12px 0 0; min-height:2.2em; }
+.lab-button { display:inline-flex; gap:7px; align-items:center; justify-content:center; min-height:44px; padding:9px 12px; border:1px solid var(--color-rule); background:var(--color-sheet); color:var(--color-ink); cursor:pointer; font:.75rem/1.4 var(--font-sans); box-shadow:0 2px 0 #25252012; transition:transform var(--duration-fast),background var(--duration-fast),box-shadow var(--duration-fast); }
+.lab-button-ink { background:var(--color-cobalt); color:var(--color-sheet); border-color:var(--color-cobalt); }
+.gadget-actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+.little-lab button:focus-visible,.little-lab input:focus-visible { outline:2px solid var(--color-cobalt); outline-offset:4px; }
+.little-lab button { -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+.little-lab button:active { transform:translateY(2px); box-shadow:none; }
+/* The main toy: a pale molded shell, recessed pixel screen and real pencil controls. */
+.pixel-toy { grid-column:1; grid-row:1 / span 2; background:var(--color-sheet); border:1px solid var(--color-rule); border-radius:16px 16px 38px 16px; padding:28px clamp(20px,2.3vw,32px) 20px; box-shadow:inset 0 -6px 0 #2525200a,0 3px 0 #d4d0c4,var(--shadow-paper); }
+.toy-screws { position:absolute; inset:12px 12px auto; display:flex; justify-content:space-between; pointer-events:none; }
+.toy-screws i { width:6px; height:6px; border:1px solid var(--color-rule); border-radius:50%; background:linear-gradient(135deg,transparent 42%,var(--color-rule) 45% 55%,transparent 58%); }
+.toy-model { font:.6rem var(--font-mono); color:var(--color-cobalt); border:1px solid var(--color-rule); padding:3px 5px; }
+.pixel-toy h3 { font-size:clamp(1.8rem,2.5vw,2.5rem); margin-top:21px; }
+.pixel-toy h3 > span { color:var(--color-cobalt); }
+.pixel-bezel { padding:12px 12px 9px; margin-top:24px; border-radius:4px 4px 17px 4px; background:var(--color-ink); box-shadow:inset 0 2px 4px #0003; }
+.pixel-board { display:grid; grid-template-columns:repeat(16,minmax(0,1fr)); width:100%; aspect-ratio:1; background:var(--color-rule); gap:1px; touch-action:none; user-select:none; cursor:crosshair; }
+.pixel-board > [role=row] { display:contents; }
+.pixel-board button { min-width:0; min-height:0; border:0; padding:0; border-radius:0; cursor:crosshair; touch-action:none; }
+.pixel-board button:active { transform:none; }
+.pixel-board button:focus-visible { outline:2px solid var(--color-ink); outline-offset:-2px; box-shadow:inset 0 0 0 3px var(--color-sheet); z-index:1; }
+.screen-caption { display:flex; justify-content:space-between; gap:10px; color:var(--color-paper); opacity:.8; font:.5rem/1.5 var(--font-mono); margin-top:9px; }
+.pixel-palette { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; margin-block:22px 18px; }
+.pixel-palette button { display:flex; align-items:center; justify-content:center; gap:7px; min-height:44px; background:var(--color-paper); border:1px solid var(--color-rule); color:var(--color-ink); cursor:pointer; font:.65rem var(--font-sans); }
+.pixel-palette button > span { width:13px; height:13px; background:var(--swatch); border:1px solid #25252040; }
+.pixel-palette button[aria-pressed=true] { border-color:var(--color-cobalt); box-shadow:inset 0 -2px 0 var(--color-cobalt); }
+.pixel-actions { display:flex; gap:8px; }
+.pixel-actions > button { flex:1; }
+.toy-bottom { display:flex; justify-content:space-between; align-items:center; gap:10px; border-top:var(--lab-line); padding-top:20px; margin-top:24px; font:.5rem/1.5 var(--font-mono); color:var(--color-muted); }
+.toy-speaker { font-size:1.15rem; letter-spacing:2px; transform:rotate(-15deg); }
+/* A torn graph-paper circuit, with switches that read as inputs. */
+.logic-paper { grid-column:2; padding:24px 22px 25px; background-color:var(--color-sheet); background-image:linear-gradient(#315bd90c 1px,transparent 1px),linear-gradient(90deg,#315bd90c 1px,transparent 1px); background-size:18px 18px; box-shadow:var(--shadow-paper); transform:rotate(-.65deg); border:var(--lab-line); border-bottom:0; }
+.logic-paper::after { content:''; position:absolute; inset:auto -1px -6px; height:7px; background:var(--color-sheet); clip-path:polygon(0 0,100% 0,100% 70%,95% 25%,90% 90%,85% 30%,80% 80%,75% 20%,70% 90%,65% 40%,60% 85%,55% 20%,50% 75%,45% 35%,40% 95%,35% 30%,30% 80%,25% 20%,20% 70%,15% 35%,10% 90%,5% 20%,0 70%); }
+.logic-paper .scrap-tape { width:65px; height:23px; left:35%; }
+.lab-pencil { font:1.1rem var(--font-hand); color:var(--color-cobalt); white-space:nowrap; }
+.logic-gates { display:flex; gap:5px; }
+.logic-gates button { flex:1; min-height:44px; background:var(--color-sheet); color:var(--color-ink); border:var(--lab-line); font:.75rem var(--font-mono); cursor:pointer; }
+.logic-gates button[aria-pressed=true] { background:var(--color-cobalt); color:var(--color-sheet); border-color:var(--color-cobalt); }
+.logic-circuit { display:flex; align-items:center; gap:0; margin:14px 0 3px; }
+.logic-inputs { width:65px; flex-shrink:0; display:flex; flex-direction:column; gap:12px; }
+.logic-inputs button { display:flex; align-items:center; justify-content:space-between; gap:5px; min-height:44px; padding:4px; background:var(--color-sheet); border:var(--lab-line); font:.73rem var(--font-mono); cursor:pointer; }
+.logic-inputs button i { width:23px; height:13px; border:1px solid var(--color-muted); border-radius:9px; position:relative; }
+.logic-inputs button i::after { content:''; position:absolute; width:7px; height:7px; border-radius:50%; background:var(--color-muted); inset:2px auto auto 2px; transition:translate var(--duration-fast); }
+.logic-inputs button[aria-pressed=true] i::after { translate:9px 0; background:var(--color-cobalt); }
+.logic-inputs button[aria-pressed=true] { color:var(--color-cobalt); }
+.logic-circuit svg { min-width:0; flex:1; height:120px; overflow:visible; }
+.logic-circuit text { fill:var(--color-ink); font:11px var(--font-mono); }
+.wire { stroke:var(--color-rule); stroke-width:2; transition:stroke var(--duration-fast); }
+.wire.powered { stroke:var(--color-cobalt); }
+.logic-led { fill:var(--color-paper); stroke:var(--color-muted); stroke-width:1.5; transition:fill var(--duration-fast); }
+.logic-led.lit { fill:var(--color-butter); stroke:var(--color-ink); }
+.logic-equation { margin:7px 0 16px; font:.83rem var(--font-mono); }
+.logic-equation strong { color:var(--color-cobalt); }
+.logic-equation > span { display:block; font:.72rem/1.6 var(--font-sans); color:var(--color-muted); margin-top:7px; }
+.truth-table { border-collapse:collapse; width:100%; font:.65rem/1.5 var(--font-mono); background:var(--color-sheet); }
+.truth-table caption { text-align:left; color:var(--color-muted); font-size:.58rem; margin-bottom:8px; }
+.truth-table th,.truth-table td { border-block:1px solid var(--color-rule); padding:5px 9px; text-align:center; }
+.truth-table tr[data-current=true] { background:var(--color-paper); color:var(--color-cobalt); font-weight:600; }
+.truth-table td:last-child { width:28px; }
+/* A small letterpress-like machine, rather than another piece of paper. */
+.glitch-machine { grid-column:3; padding:24px 22px; background:var(--color-paper); border:1px solid var(--color-ink); box-shadow:4px 5px 0 #25252012; transform:rotate(.45deg); }
+.machine-badge { font:.6rem var(--font-mono); padding:3px; border:1px solid var(--color-muted); }
+.glitch-screen { position:relative; isolation:isolate; background:var(--color-ink); color:var(--color-paper); min-height:146px; display:flex; align-items:center; justify-content:center; margin-block:22px 20px; padding:24px 16px 35px; overflow:hidden; border:5px solid #d4d0c4; }
+.glitch-scanlines { position:absolute; inset:0; z-index:-1; background:repeating-linear-gradient(transparent 0 3px,#fffdf706 3px 4px); pointer-events:none; }
+.glitch-type { position:relative; font:600 clamp(1.2rem,1.8vw,1.75rem)/1.2 var(--font-mono); text-align:center; overflow-wrap:anywhere; width:100%; }
+.glitch-type > span:first-child { position:relative; z-index:2; }
+.glitch-type > span:not(:first-child) { position:absolute; inset:0; color:var(--color-butter); pointer-events:none; opacity:.45; }
+.glitch-type > span:nth-child(2) { clip-path:inset(8% 0 48%); }
+.glitch-type > span:nth-child(3) { color:var(--color-tomato); clip-path:inset(60% 0 5%); }
+.glitch-type[data-active=true] > span:nth-child(2) { animation:lab-glitch-upper 1.8s ease-in-out 1 both; }
+.glitch-type[data-active=true] > span:nth-child(3) { animation:lab-glitch-lower 1.8s ease-in-out 1 both; }
+.glitch-type[data-active=true][data-frozen=true] > span { animation-play-state:paused; }
+@keyframes lab-glitch-upper { 0%,100% { transform:translateX(var(--glitch-offset)); } 30% { transform:translateX(calc(var(--glitch-offset) * -1)) skewX(var(--glitch-tilt)); } 65% { transform:translateX(calc(var(--glitch-offset) * .3)); } }
+@keyframes lab-glitch-lower { 0%,100% { transform:translateX(calc(var(--glitch-offset) * -1)); } 40% { transform:translateX(var(--glitch-offset)); } 80% { transform:translateX(0) skewX(calc(var(--glitch-tilt) * -1)); } }
+.glitch-screen-label { position:absolute; bottom:9px; left:12px; font:.48rem var(--font-mono); letter-spacing:.07em; color:var(--color-butter); }
+.lab-field { display:block; font:.73rem/1.5 var(--font-sans); }
+.lab-field input:not([type=range]) { display:block; width:100%; border:var(--lab-line); min-height:44px; background:var(--color-sheet); color:var(--color-ink); font:.75rem var(--font-mono); padding:10px; margin-top:7px; border-radius:0; }
+.glitch-dial-row { display:flex; align-items:center; gap:20px; margin-top:18px; }
+.glitch-dial-row .lab-field { flex:1; min-width:0; }
+.glitch-dial-row output { float:right; font:.7rem var(--font-mono); }
+.lab-field input[type=range] { display:block; width:100%; min-height:44px; margin:0; accent-color:var(--color-cobalt); cursor:ew-resize; }
+.glitch-dial { width:38px; height:38px; border:1px solid var(--color-ink); border-radius:50%; background:var(--color-sheet); box-shadow:1px 2px 0 var(--color-rule); flex-shrink:0; display:flex; justify-content:center; transition:rotate var(--duration-fast); }
+.glitch-dial i { height:12px; width:2px; background:var(--color-cobalt); margin-top:4px; }
+/* The arcade has a marquee, a deep push-button and little cabinet feet. */
+.tiny-arcade { grid-column:2; padding:0 24px 24px; margin-top:12px; background:var(--color-tomato); border:1px solid var(--color-ink); border-radius:10px 10px 2px 2px; box-shadow:inset 0 -7px 0 #25252014,3px 5px 0 #25252013; transform:rotate(-.5deg); }
+.arcade-marquee { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:16px 0 13px; border-bottom:1px solid #25252050; }
+.tiny-arcade h3 { margin-top:18px; }
+.arcade-score { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:178px; background:var(--color-sheet); border:1px solid var(--color-ink); text-align:center; padding:14px; margin-top:20px; }
+.arcade-signal { font:1.6rem/1 var(--font-mono); color:var(--color-cobalt); }
+.arcade-score strong { font:500 clamp(1.3rem,1.8vw,1.7rem)/1.1 var(--font-editorial); margin:15px 0 12px; letter-spacing:-.04em; }
+.arcade-score > span:last-child { font:.72rem/1.5 var(--font-sans); color:var(--color-muted); }
+.tiny-arcade[data-phase=ready] .arcade-score { background:var(--color-butter); border-width:3px; padding:12px; }
+.tiny-arcade[data-phase=ready] .arcade-score strong { font-size:2.4rem; }
+.arcade-button { width:100%; min-height:56px; background:var(--color-ink); color:var(--color-sheet); border:1px solid var(--color-ink); border-radius:5px; box-shadow:0 5px 0 #25252060; font:600 .9rem var(--font-sans); cursor:pointer; margin-top:20px; transition:transform var(--duration-fast),box-shadow var(--duration-fast); }
+.arcade-button:active { transform:translateY(4px)!important; }
+.tiny-arcade .lab-help { color:var(--color-ink); margin-top:22px; font-size:.68rem; }
+.arcade-feet { position:absolute; display:flex; justify-content:space-between; inset:auto 25px -7px; pointer-events:none; }
+.arcade-feet i { width:27px; height:7px; background:var(--color-ink); }
+/* A paper printer with a true lever button and a fresh receipt on each pull. */
+.idea-printer { grid-column:3; margin-top:24px; }
+.printer-machine { position:relative; background:var(--color-sage); border:1px solid var(--color-rule); padding:22px 68px 30px 22px; border-radius:3px 18px 3px 3px; box-shadow:inset 0 -5px 0 #2525200b; }
+.printer-machine .gadget-header { margin-right:-42px; }
+.printer-light { width:6px; height:6px; border:1px solid var(--color-ink); background:var(--color-butter); border-radius:50%; }
+.printer-machine h3 { font-size:2.3rem; margin-bottom:13px; }
+.printer-machine .gadget-intro { font-size:.8rem; margin-bottom:0; }
+.printer-slot { position:absolute; bottom:14px; left:16px; right:16px; height:7px; border-radius:4px; background:var(--color-ink); }
+.idea-lever { position:absolute; right:15px; top:64px; width:46px; height:86px; padding:0; border:0; background:transparent; color:var(--color-ink); cursor:pointer; transform-origin:50% 70%; }
+.lever-knob { position:absolute; left:10px; top:0; width:26px; height:26px; border-radius:50%; border:1px solid var(--color-ink); background:var(--color-cobalt); z-index:2; box-shadow:inset -4px -3px 0 #25252020; }
+.lever-rod { position:absolute; top:22px; left:20px; width:6px; height:36px; background:var(--color-sheet); border:1px solid var(--color-ink); }
+.lever-base { position:absolute; top:49px; left:11px; width:24px; height:14px; background:var(--color-paper); border:1px solid var(--color-ink); border-radius:50%; }
+.idea-lever > span:last-child { position:absolute; top:63px; left:-4px; white-space:nowrap; font:1.05rem var(--font-hand); }
+.idea-output-track { position:relative; overflow:hidden; padding:0 10px 10px; margin-top:-17px; }
+.idea-slip { position:relative; background:var(--color-sheet); padding:19px 17px 26px; box-shadow:var(--shadow-paper); border:var(--lab-line); border-bottom:0; }
+.idea-slip::after { content:''; position:absolute; left:0; right:0; height:6px; bottom:-5px; background:var(--color-sheet); clip-path:polygon(0 0,100% 0,100% 100%,95% 0,90% 100%,85% 0,80% 100%,75% 0,70% 100%,65% 0,60% 100%,55% 0,50% 100%,45% 0,40% 100%,35% 0,30% 100%,25% 0,20% 100%,15% 0,10% 100%,5% 0,0 100%); }
+.receipt-meta { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; padding-bottom:13px; border-bottom:1px dashed var(--color-rule); font:.49rem/1.6 var(--font-mono); color:var(--color-muted); }
+.generated-idea { font:500 1.15rem/1.55 var(--font-editorial); letter-spacing:-.025em; margin:18px 0 22px; min-height:9.3em; }
+.receipt-footer { display:flex; align-items:center; justify-content:space-between; gap:12px; font:.48rem/1.7 var(--font-mono); color:var(--color-muted); }
+.receipt-footer svg { width:56px; height:22px; }
+.idea-printer > .gadget-actions { padding-inline:10px; }
+.idea-printer > .lab-status { padding-inline:10px; }
+.lab-colophon { display:flex; align-items:baseline; flex-wrap:wrap; gap:10px 20px; font:.67rem/1.8 var(--font-mono); color:var(--color-muted); border-top:var(--lab-line); margin:55px 0 0; padding-top:22px; }
+.lab-colophon > span:first-child { color:var(--color-cobalt); font:1.6rem var(--font-hand); }
+.lab-colophon > span:last-child { margin-left:auto; }
+.lab-nojs { padding:20px; border:var(--lab-line); line-height:1.7; }
+@media(hover:hover) and (pointer:fine) { .lab-button:hover { border-color:var(--color-cobalt); }.pixel-palette button:hover,.logic-gates button:hover { border-color:var(--color-cobalt); }.arcade-button:hover { box-shadow:0 6px 0 #25252060; }.idea-lever:hover .lever-knob { background:var(--color-ink); } }
+@media(max-width:1150px) and (min-width:701px) {
+ .lab-workbench { grid-template-columns:1.12fr 1fr; gap:28px; }.pixel-toy { grid-column:1; grid-row:1 / span 2; }.logic-paper { grid-column:2; grid-row:1; }.glitch-machine { grid-column:2; grid-row:2; }.tiny-arcade { grid-column:1; grid-row:3; margin-top:0; }.idea-printer { grid-column:2; grid-row:3; margin-top:0; }.generated-idea { min-height:7.8em; }
+ .lab-heading-line { align-items:flex-start; flex-direction:column; gap:0; }.lab-heading-line > p { margin-bottom:0; }.lab-heading > .handwritten-note { margin-left:0; }
+}
+@media(max-width:700px) {
+ .little-lab { padding-block:2rem 3rem; }.lab-heading { padding-top:2.5rem; margin-bottom:2.5rem; }.lab-heading-line { display:block; }.lab-heading h2 { font-size:clamp(2.8rem,11.5vw,4rem); gap:14px; }.lab-heading-line > p { font-size:1rem; margin-block:18px; }.lab-heading > .handwritten-note { font-size:1.4rem; max-width:320px; margin-left:0; }
+ .lab-workbench { display:flex; flex-direction:column; gap:34px; padding-inline:3px; }.lab-gadget { width:100%; max-width:480px; margin-inline:auto; }.pixel-toy { padding:27px 20px 20px; }.pixel-toy h3 { font-size:2rem; }.pixel-bezel { margin-top:20px; padding:9px 9px 8px; }.lab-label { font-size:.56rem; }.pixel-palette { gap:6px; }.pixel-palette button { font-size:.65rem; gap:5px; }
+ .logic-paper { transform:rotate(-.3deg); padding:25px 22px; }.glitch-machine { transform:none; padding:24px 22px; }.lab-gadget h3 { font-size:1.8rem; }.logic-circuit svg { height:130px; }.truth-table th,.truth-table td { padding-block:7px; }.glitch-type { font-size:1.5rem; }.glitch-screen { min-height:155px; }.tiny-arcade { transform:none; margin-top:0; }.idea-printer { margin-top:0; }.generated-idea { min-height:0; font-size:1.25rem; }.idea-output-track { padding-inline:14px; }.idea-slip { padding:20px 18px 26px; }.lab-colophon { margin-top:38px; }.lab-colophon > span:last-child { margin-left:0; }
+}
+@media(prefers-reduced-motion:reduce) { .little-lab * { animation:none!important; transition:none!important; }.little-lab button:active { transform:none!important; }.glitch-type > span:not(:first-child) { display:none; } }
+
+@media(prefers-reduced-motion:reduce) { .little-lab .idea-slip { opacity:1!important; transform:none!important; }.little-lab .idea-lever { transform:none!important; }.little-lab .glitch-dial { rotate:none; } }

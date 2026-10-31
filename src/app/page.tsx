@@ -1,4 +1,5 @@
 import { EngineersNotebook } from "@/components/notebook/engineers-notebook";
+import { LittleLab } from "@/components/lab/little-lab";
 import { ProjectArchive } from "@/components/archive/project-archive";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { SectionLabel } from "@/components/ui/scrapbook";
@@ -18,5 +19,5 @@ export default function HomePage() {
    <div className="personal-detail"><svg viewBox="0 0 130 76" fill="none" aria-hidden="true"><path d="m20 12 80 3-3 43-76-2Zm-9 51 97 1 10 8-114-2Z M42 29l-9 7 9 6m30-13 9 7-9 6m-12-17-7 21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg><span>ideas → a few lines of code<br />→ something that works.</span></div>
   </div>
   <ScrapbookDesk />
- </section><ProjectArchive /><EngineersNotebook /></>;
+ </section><ProjectArchive /><EngineersNotebook /><LittleLab /></>;
 }
