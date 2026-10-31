@@ -29,15 +29,16 @@ export function StoryBook() {
  return <div className="story-book">
   <NotebookTabs items={storyPages} selected={story} onSelect={select} prefix="story" label="Story chapters" className="story-chapter-tabs" />
   <div className="story-page-area physical-story-pages" data-turning={!!turn&&!reduce}>
-   {storyPages.map((page,pageIndex)=><div key={page.id} id={`story-panel-${page.id}`} role="tabpanel" aria-labelledby={`story-tab-${page.id}`} tabIndex={0} hidden={story!==page.id} className="story-chapter"><StoryContent page={page} index={pageIndex}/></div>)}
+   {storyPages.map((page,pageIndex)=><div key={page.id} id={`story-panel-${page.id}`} role="tabpanel" aria-labelledby={`story-tab-${page.id}`} tabIndex={story===page.id?0:-1} aria-hidden={story!==page.id} inert={story!==page.id} data-active={story===page.id} className="story-chapter"><StoryContent page={page} index={pageIndex}/></div>)}
    {turn&&!reduce&&<div className="page-turn-viewport" aria-hidden="true"><motion.div key={turn.sequence} className="page-turn-sheet"
+     style={{transformOrigin:turn.direction>0?"0% 50%":"100% 50%"}}
      initial={{rotateY:0}}
-     animate={{rotateY:[0,55*turn.direction,130*turn.direction,178*turn.direction]}}
-     transition={{duration:.72,times:[0,.3,.76,1],ease:[.32,.72,.25,1]}}
+     animate={{rotateY:[0,-48*turn.direction,-130*turn.direction,-178*turn.direction]}}
+     transition={{duration:.56,times:[0,.32,.78,1],ease:[.4,0,.2,1]}}
      onAnimationComplete={()=>setTurn(current=>current?.sequence===turn.sequence ? null:current)}>
      <div className="page-turn-front story-chapter"><StoryContent page={storyPages[previousIndex]} index={previousIndex}/></div>
-     <motion.div className="page-turn-back" initial={{opacity:1}} animate={{opacity:[1,1,0]}} transition={{duration:.72,times:[0,.8,1]}}><span className="notebook-micro">FIELD NOTES / VOL. 03</span><span>one build<br />at a time.</span></motion.div>
-     <motion.div className="page-turn-shade" initial={{opacity:0}} animate={{opacity:[0,.2,.12,0]}} transition={{duration:.72}} />
+     <div className="page-turn-back"><span className="notebook-micro">FIELD NOTES / VOL. 03</span><span>one build<br />at a time.</span></div>
+     <motion.div className="page-turn-shade" initial={{opacity:0}} animate={{opacity:[0,.12,.06,0]}} transition={{duration:.56}} />
    </motion.div></div>}
   </div>
   <nav className="story-turn-controls" aria-label="Turn story pages">

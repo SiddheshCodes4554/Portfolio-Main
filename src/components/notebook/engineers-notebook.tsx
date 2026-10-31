@@ -10,7 +10,7 @@ import { JourneyCircuit } from "./journey-circuit";
 import "./notebook.css";
 
 const pageSides=[{id:"story",label:"My story"},{id:"toolbox",label:"My toolbox"}];
-const mediaQuery="(max-width: 650px)";
+const mediaQuery="(max-width: 900px)";
 function subscribe(onChange:()=>void) { const query=window.matchMedia(mediaQuery); query.addEventListener("change",onChange); return ()=>query.removeEventListener("change",onChange); }
 const getSnapshot=()=>window.matchMedia(mediaQuery).matches;
 const getServerSnapshot=()=>false;
@@ -25,7 +25,7 @@ export function EngineersNotebook() {
      <div className="notebook-page-meta"><span>FIELD NOTES / THE PERSON</span><span>01 — LEFT PAGE</span></div>
      <div className="story-identity"><span className="notebook-monogram" aria-hidden="true">sg.</span><div><h3 id="story-leaf-title">Siddhesh Gawade</h3><span className="notebook-micro">PUNE, INDIA / BUILDING THINGS</span></div></div><p className="notebook-intro">{notebookIntro}</p>
      <StoryBook />
-     <div className="journey-heading"><h3>Connect the dots.</h3><span className="notebook-micro">TOUCH A CONNECTION ↗</span></div><JourneyCircuit />
+     <div className="journey-heading"><h3>Connect the dots.</h3><span className="notebook-micro">SELECT A CONNECTION ↗</span></div><JourneyCircuit />
      <div className="page-folio"><span>THE STORY SO FAR</span><span>03 / 01</span></div>
     </section>
     <section id="book-side-panel-toolbox" className="notebook-page tools-leaf" hidden={mobile&&side!=="toolbox"} role={mobile?"tabpanel":undefined} aria-labelledby={mobile?"book-side-tab-toolbox":"tools-leaf-title"} tabIndex={mobile?0:undefined}>
