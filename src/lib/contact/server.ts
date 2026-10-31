@@ -8,7 +8,10 @@ type Config = { apiKey:string; from:string; to:string; origin:string; redisUrl:s
 type Fetch = typeof fetch;
 export function contactConfig(env: Environment): Config | null {
   const { RESEND_API_KEY:apiKey, CONTACT_FROM_EMAIL:from, CONTACT_TO_EMAIL:to, CONTACT_ORIGIN:origin, UPSTASH_REDIS_REST_URL:redisUrl, UPSTASH_REDIS_REST_TOKEN:redisToken, CONTACT_RATE_LIMIT_SECRET:secret } = env;
-  const ipHeader = env.VERCEL === "1" ? "x-vercel-forwarded-for" : env.CONTACT_TRUSTED_IP_HEADER?.toLowerCase();
+  // Local development shares a rate bucket; it has no trusted reverse proxy.
+  let local = false;
+  try { local = ["localhost", "127.0.0.1"].includes(new URL(origin ?? "").hostname); } catch { /* Invalid origin is rejected below. */ }
+  const ipHeader = env.VERCEL === "1" ? "x-vercel-forwarded-for" : local ? "local-loopback" : env.CONTACT_TRUSTED_IP_HEADER?.toLowerCase();
   if (!apiKey || !from || !to || !origin || !redisUrl || !redisToken || !secret || secret.length < 32 || !ipHeader || !/^[a-z0-9-]+$/.test(ipHeader)) return null;
   try {
     const site = new URL(origin), redis = new URL(redisUrl);
@@ -53,7 +56,8 @@ export async function handleContact(request: Request, env: Environment, fetcher:
   if(request.headers.get("origin")!==config.origin) return json(403,"Please send your postcard from this website.");
   if(request.headers.get("content-type")?.split(";")[0].trim()!=="application/json") return json(415,"Send your postcard as JSON.");
   if(Number(request.headers.get("content-length"))>contactLimits.bodyBytes) return json(413,"That postcard is too large.");
-  const ip=request.headers.get(config.ipHeader)?.trim();
+  const localRequest = ["localhost", "127.0.0.1"].includes(new URL(request.url).hostname);
+  const ip=config.ipHeader === "local-loopback" ? (localRequest ? "127.0.0.1" : undefined) : request.headers.get(config.ipHeader)?.trim();
   // Never trust a caller-supplied X-Forwarded-For chain. The proxy must overwrite this header.
   if(!ip || !isIP(ip)) return json(503,"The postbox is temporarily unavailable. Please try email.");
   try {

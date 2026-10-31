@@ -18,6 +18,15 @@ test('unconfigured and untrusted proxy/origin fail closed without network calls'
   assert.equal(contactConfig({...env,CONTACT_RATE_LIMIT_SECRET:''}),null);
   assert.equal(contactConfig({...env,CONTACT_ORIGIN:'http://public.example'}),null);
 });
+test('localhost works without proxy headers while production still requires them',async()=>{
+  const localEnv={...env,VERCEL:undefined,CONTACT_ORIGIN:'http://localhost:3000'};
+  const localRequest=()=>new Request('http://localhost:3000/api/contact',{method:'POST',headers:{origin:localEnv.CONTACT_ORIGIN,'content-type':'application/json'},body:JSON.stringify(payload())});
+  assert.ok(contactConfig(localEnv));
+  assert.equal((await handleContact(localRequest(),localEnv,mock())).status,200);
+  assert.equal(contactConfig({...env,VERCEL:undefined}),null);
+  const remote=new Request('https://public.example/api/contact',{method:'POST',headers:{origin:localEnv.CONTACT_ORIGIN,'content-type':'application/json'},body:JSON.stringify(payload())});
+  assert.equal((await handleContact(remote,localEnv,async()=>{throw Error('Must not fetch');})).status,503);
+});
 test('server validation rejects header injection, invalid stamp, bots and length violations',async()=>{
   for(const extra of [{email:'evil@example.com\r\nBcc: victim@example.com'},{name:'a'},{name:'x'.repeat(81)},{message:'short'},{message:'x'.repeat(4001)},{stamp:'unknown'},{website:'spam.example'},{startedAt:Date.now()+10000}]) {
     assert.equal((await handleContact(request(payload(extra)),env,mock(()=>{throw Error('Must not send');}))).status,422);

@@ -18,6 +18,8 @@ The chosen design follows the [Resend send-email API](https://resend.com/docs/ap
 
 ## Request handling
 
+Local development with a localhost or 127.0.0.1 origin does not need `CONTACT_TRUSTED_IP_HEADER`: all local requests share one loopback rate-limit bucket. Both the configured origin and request hostname must be local. Production still requires the trusted proxy configuration above. Restart the development server after changing environment values.
+
 `GET /api/contact` returns only `{configured: boolean}`, with no caching or secrets. `POST` accepts same-origin JSON with a name (2-80 characters), email (up to 254), message (10-4,000), one of three stamp IDs, an empty `website` honeypot, a draft timestamp, and a request UUID. A 1.5-second minimum interaction time is a supplemental spam signal, not a trusted security boundary. Draft timestamps expire after 24 hours.
 
 The server enforces an 18 KB body cap while streaming, a five-second read deadline, a five-attempt/ten-minute per-IP durable limiter, and bounded provider timeouts. The limiter uses atomic Redis EVAL and expires keys; only an HMAC of the client IP is stored, never the raw address. If the limiter is unavailable, no email is sent. The endpoint does not log form contents or provider credentials. Retention within Resend is governed by your provider account; the app maintains no message database.
