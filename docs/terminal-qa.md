@@ -26,3 +26,11 @@ Enter runs commands; Up/Down recalls history while preserving an unfinished draf
 - Existing postcard mocked success/error, validation, duplicate guard, flip/draft/stamp state, focus/reset and reduced-motion checks pass. Existing marble and arcade keyboard/state/reduced-motion checks pass. Contact infrastructure is unchanged; no real emails sent.
 
 No deployment was performed. Browser checks use desktop Chrome emulation; native PDF presentation and downloads can differ in iOS, Android, Firefox and Safari. Popup blockers may prevent automatic GitHub/LinkedIn opening; the result always includes a direct usable link.
+
+## Expanded terminal window
+
+The title-bar expand button opens a large native modal with larger output typography and a viewport-sized mobile layout. The same state model powers both sizes: drafts, output, history, theme and virtual directory persist. Scroll position is carried across sizes, clamped when the larger viewport fits more content. Close/Escape returns focus to the desk expand control; minimize/exit returns to the minimized desk console. Suggestions consume Escape before the modal does.
+
+Background scrolling is locked while expanded. The résumé remains a separate native dialog above the terminal, retaining its focus and scroll lock on return. Project archive actions, notebook links and the contact command close the expanded view before navigating.
+
+Verified with production Chrome: opening, typing, draft/output/history persistence, suggestion Escape precedence, focus restoration, nested résumé open/close, project/contact navigation, exit/reopen, reduced motion and screenshots at 1440×900, 1024×768, 768×1024, 430×932 and 390×844 with no clipping or horizontal overflow. Terminal tests (5), contact tests (8), lint, typecheck and production build pass. No contact infrastructure changes or real emails.
