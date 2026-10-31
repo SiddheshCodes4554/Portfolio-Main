@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { siteConfig } from "@/lib/site-config";
 import { siteContent } from "@/content/site";
 
 export function SiteHeader() {
@@ -10,9 +8,7 @@ export function SiteHeader() {
         <span className="wordmark-stamp" aria-hidden="true">sg.</span>
         <span>{siteContent.name}<span className="wordmark-caption">a personal collection</span></span>
       </Link>
-      <nav aria-label="Main navigation">
-        <a className="text-link" href={siteConfig.repository}>On GitHub <ArrowUpRight size={16} aria-hidden="true" /></a>
-      </nav>
+      <span className="header-edition" aria-hidden="true">THE INTERNET SCRAPBOOK</span>
     </header>
   );
 }

@@ -1,7 +1,8 @@
 import { WorkbenchPower } from "./workbench-power";
 import Image from "next/image";
 import Link from "next/link";
-import { DeskLamp, MiniCircuit, MiniTerminal } from "./workbench";
+import { DeskLamp, MiniCircuit } from "./workbench";
+import { PortfolioTerminal } from "@/components/terminal/portfolio-terminal";
 import { ArrowUpRight } from "lucide-react";
 import { PaperCard, PolaroidCard, PaperTape, HandwrittenNote, SectionLabel } from "@/components/ui/scrapbook";
 import { ArtifactPreview } from "./artifact-preview";
@@ -58,7 +59,7 @@ export function ScrapbookDesk() {
       <PaperCard surface="grid" tilt="casual" className="aeris-paper"><SectionLabel>Field sketch / 02</SectionLabel><h2>AERIS</h2><p>Rescue. Observe. Respond.</p><ArchitectureSketch /><span className="open-me">open me ↗</span></PaperCard>
     </ArtifactPreview>
     <MiniCircuit />
-    <MiniTerminal />
+    <PortfolioTerminal />
 
     <HackathonTicket />
   </WorkbenchPower>;
