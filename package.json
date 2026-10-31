@@ -8,7 +8,8 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "test:lab": "node --experimental-strip-types --test tests/lab.test.mjs"
+    "test:lab": "node --experimental-strip-types --test tests/lab.test.mjs",
+    "test:contact": "node --experimental-strip-types --test tests/contact.test.mjs"
   },
   "repository": {
     "type": "git",
