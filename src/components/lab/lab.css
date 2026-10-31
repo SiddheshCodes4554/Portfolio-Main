@@ -152,3 +152,12 @@
 @media(max-width:1150px) and (min-width:701px) { .marble-paper { grid-column:2; grid-row:1; } }
 @media(max-width:700px) { .marble-paper { transform:rotate(-.3deg); padding:25px 22px; } }
 @media(prefers-reduced-motion:reduce) { .arcade-confetti { display:none; }.arcade-prize { animation:none; } }
+
+/* Stagger the workbench by physical object, keeping the control surfaces level. */
+@media(min-width:1151px) {
+ .lab-workbench { grid-template-columns:1.18fr 1fr .96fr; column-gap:32px; row-gap:38px; }
+ .marble-paper { margin-top:38px; }
+ .glitch-machine { margin-top:13px; }
+ .tiny-arcade { margin-top:30px; margin-inline:10px -4px; }
+ .idea-printer { margin-top:0; margin-inline:8px; }
+}

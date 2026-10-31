@@ -99,3 +99,9 @@
 .postcard-flight { position:relative; z-index:1; transform-origin:50% 50%; }
 .postcard-success { z-index:0; }
 .postcard-envelope { line-height:1; margin-top:24px; margin-bottom:16px; width:44px; }
+
+/* Explicit compositing and hit testing for both sides of the physical card. */
+.postcard-flight { transform-style:preserve-3d; }
+.postcard-face { -webkit-backface-visibility:hidden; }
+.postcard-face[aria-hidden=true] { pointer-events:none; }
+.postcard-face[aria-hidden=false] { pointer-events:auto; }

@@ -11,9 +11,12 @@ import "@fontsource-variable/caveat/index.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteContent.url),
   title: { default: `${siteContent.title} — ${siteContent.name}`, template: `%s — ${siteContent.title}` },
   description: siteContent.description,
   applicationName: siteContent.title,
+  openGraph: { type: "website", locale: "en_IN", siteName: siteContent.title, title: `${siteContent.title} — ${siteContent.name}`, description: siteContent.description },
+  twitter: { card: "summary_large_image", title: `${siteContent.title} — ${siteContent.name}`, description: siteContent.description },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

@@ -100,3 +100,16 @@ body:has(.hero) .site-footer { padding-block:10px; min-height:44px; }
 .terminal-powered .terminal-title > span { color:var(--color-sage); }
 @media(max-width:540px) { .hero-desk .desk-wire { display:none; }.hero-desk::before { background:radial-gradient(ellipse at 50% 23%,#f5d77e50,transparent 52%); } }
 @media(prefers-reduced-motion:reduce) { .hero-desk::before,.campus-print,.aeris-paper { transition:none; } }
+
+/* Keep the product print as the focal point; gather the powered tools below it. */
+.hero-project-capture { display:block; width:100%; height:auto; }
+.campus-print .hero-project-capture { height:100%; object-fit:contain; background:var(--color-ink); }
+@media(min-width:1100px) {
+ .campus-artifact { width:51%; left:23%; top:32px; }
+ .campus-print .polaroid-image { aspect-ratio:1.95; }
+ .mini-circuit { width:30%; top:44%; }
+ .mini-terminal { width:36%; left:33%; bottom:166px; }
+ .aeris-artifact { width:30%; top:38%; }
+ .hackathon-ticket { width:62%; left:27%; }
+}
+@media(min-width:1100px) and (max-height:800px) { .mini-terminal { bottom:148px; } }

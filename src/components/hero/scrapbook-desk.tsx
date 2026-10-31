@@ -1,18 +1,16 @@
 import { WorkbenchPower } from "./workbench-power";
+import Image from "next/image";
+import Link from "next/link";
 import { DeskLamp, MiniCircuit, MiniTerminal } from "./workbench";
 import { ArrowUpRight } from "lucide-react";
 import { PaperCard, PolaroidCard, PaperTape, HandwrittenNote, SectionLabel } from "@/components/ui/scrapbook";
 import { ArtifactPreview } from "./artifact-preview";
 import { HackathonTicket } from "./paper-interactions";
-import { projects } from "@/content/projects";
+import { projects, archiveProjects } from "@/content/projects";
 
-function CampusPlaceholder() {
-  return <div className="campus-placeholder">
-    <span className="print-metadata">PROJECT 01 / ACADEMIC WORKSPACE</span>
-    <span className="campus-wordmark">Campus<span>OS</span></span>
-    <svg viewBox="0 0 360 170" fill="none" aria-hidden="true"><ellipse cx="180" cy="90" rx="135" ry="62" stroke="currentColor" strokeOpacity=".4" strokeDasharray="3 6" transform="rotate(-12 180 90)"/><path d="m80 80 105-40 85 65-130 33Z" fill="var(--color-butter)"/><path d="m80 80 60 58 45-22 85-11M140 138l45-98v76" stroke="var(--color-ink)" strokeWidth="2"/><circle cx="282" cy="138" r="15" fill="var(--color-sage)"/></svg>
-    <span className="screenshot-placeholder-label">Screenshot placeholder · original artwork</span>
-  </div>;
+function CampusCapture() {
+  const capture = archiveProjects[0].screenshot;
+  return <Image className="hero-project-capture" src={capture.src} width={capture.width} height={capture.height} alt={capture.alt} sizes="(max-width: 540px) 90vw, (max-width: 1099px) 350px, 460px" loading="eager" />;
 }
 
 function ArchitectureSketch() {
@@ -26,11 +24,11 @@ function CampusPreview() {
   return <>
     <p className="preview-lede">{projects.campus.description}</p>
     <ul className="technology-list" aria-label="CampusOS technologies">{projects.campus.technologies.map(tech => <li key={tech}>{tech}</li>)}</ul>
-    <a className="case-study-link" href="#campus-case-study">Read case-study notes <ArrowUpRight size={16} aria-hidden="true" /></a>
-    <CampusPlaceholder />
+    <Link className="case-study-link" href="/projects/campusos">Read the full case study <ArrowUpRight size={16} aria-hidden="true" /></Link>
+    <CampusCapture />
     <section id="campus-case-study" tabIndex={-1} className="case-study-notes"><SectionLabel>Inside the build</SectionLabel><h3>CampusOS / case-study notes</h3>
       {projects.campus.notes.map(note => <div key={note.title}><h4>{note.title}</h4><p>{note.text}</p></div>)}
-      <p className="source-note">Technical notes from my résumé. Product screenshots will be added when available.</p>
+      <p className="source-note">Technical notes from my résumé, alongside the owner-supplied product capture.</p>
     </section>
   </>;
 }
@@ -54,7 +52,7 @@ export function ScrapbookDesk() {
     <DeskLamp />
     <HandwrittenNote className="desk-discovery">switch it on. open it up. try a command. ↗</HandwrittenNote>
     <ArtifactPreview title="CampusOS" action="Open CampusOS project preview" className="campus-artifact" preview={<CampusPreview />}>
-      <PolaroidCard tilt="left" className="campus-print" caption={<><strong>CampusOS</strong><span>A student command center. <span aria-hidden="true">↗</span></span></>}><CampusPlaceholder /></PolaroidCard><PaperTape />
+      <PolaroidCard tilt="left" className="campus-print" caption={<><strong>CampusOS</strong><span>A student command center. <span aria-hidden="true">↗</span></span></>}><CampusCapture /></PolaroidCard><PaperTape />
     </ArtifactPreview>
     <ArtifactPreview title="AERIS / unfold the system" action="Unfold AERIS architecture sketch" className="aeris-artifact" preview={<AerisPreview />}>
       <PaperCard surface="grid" tilt="casual" className="aeris-paper"><SectionLabel>Field sketch / 02</SectionLabel><h2>AERIS</h2><p>Rescue. Observe. Respond.</p><ArchitectureSketch /><span className="open-me">open me ↗</span></PaperCard>

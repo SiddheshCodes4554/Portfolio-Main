@@ -8,6 +8,9 @@ import { ScrapbookDesk } from "@/components/hero/scrapbook-desk";
 import { heroContent as copy } from "@/content/hero";
 import "./hero.css";
 import "./inventor.css";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function HomePage() {
  return <><section className="hero page-width" aria-labelledby="hero-title">

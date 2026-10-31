@@ -132,3 +132,11 @@
 .journey-detail { animation:notebook-selection-reveal .2s var(--ease-paper); }
 @media(max-width:900px) { .notebook-page:not([hidden]) { animation:notebook-selection-reveal .24s var(--ease-paper); } }
 @media(prefers-reduced-motion:reduce) { .engineers-notebook * { animation:none!important; } }
+
+/* A common text measure keeps both leaves readable without loosening the binding. */
+.story-chapter > p:not(.handwritten-note) { font-size:.96rem; line-height:1.9; max-width:52ch; }
+.notebook-intro,.toolbox-intro { max-width:52ch; }
+.tool-detail p,.journey-detail p { font-size:.93rem; line-height:1.85; max-width:52ch; }
+.story-chapter h4 { margin-bottom:24px; }
+.toolbox-category { padding-top:24px; }
+.page-turn-front,.page-turn-back { -webkit-backface-visibility:hidden; }
