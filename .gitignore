@@ -10,5 +10,13 @@ next-env.d.ts
 Thumbs.db
 tmp/
 *.log
+.vercel/
+.turbo/
+coverage/
+.nyc_output/
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
 # Private factual source; do not publish personal contact details by accident.
 reference/*.pdf
