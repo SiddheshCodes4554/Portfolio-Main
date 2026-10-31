@@ -1,7 +1,19 @@
-export type Gate = "AND" | "OR" | "XOR";
-export const gates: readonly Gate[] = ["AND", "OR", "XOR"];
-export function evaluateGate(gate: Gate, a: boolean, b: boolean): boolean {
-  return gate === "AND" ? a && b : gate === "OR" ? a || b : a !== b;
+export const marbleScores = [10, 25, 50, 100, 50, 25, 10] as const;
+/** A bounded, illustrative peg-board route. No physics engine or background loop. */
+export function marbleRoute(lane: number, random = Math.random) {
+  let x = 40 + Math.max(0, Math.min(6, Math.round(lane))) * 40;
+  const xs = [x], ys = [15];
+  for (let row = 0; row < 8; row++) {
+    const candidate = x + (random() < .5 ? -20 : 20);
+    x = candidate < 20 ? 40 : candidate > 300 ? 280 : candidate;
+    xs.push(x); ys.push(42 + row * 25);
+  }
+  const slot = Math.max(0, Math.min(6, Math.floor((x - 20) / 40)));
+  xs.push(40 + slot * 40); ys.push(267);
+  return { xs, ys, slot, score: marbleScores[slot] };
+}
+export function averageReaction(rounds: readonly number[]): number {
+  return rounds.length ? Math.round(rounds.reduce((sum, value) => sum + value, 0) / rounds.length) : 0;
 }
 
 export const PIXEL_SIZE = 16;

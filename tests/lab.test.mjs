@@ -1,10 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { evaluateGate, gates, pixelLine, randomIndex, starterPixels } from '../src/lib/lab.ts';
+import { marbleRoute, marbleScores, averageReaction, pixelLine, randomIndex, starterPixels } from '../src/lib/lab.ts';
 
-test('all twelve Boolean combinations match the truth tables', () => {
-  const expected = { AND: [false,false,false,true], OR: [false,true,true,true], XOR: [false,true,true,false] };
-  for (const gate of gates) for (let bits=0;bits<4;bits++) assert.equal(evaluateGate(gate,!!(bits&2),!!(bits&1)),expected[gate][bits]);
+test('marbles stay on the board and settle in a valid scored pocket', () => {
+  for(const lane of [-10,0,1,3,6,20]) for(const random of [0,.49,.5,.9999]) {
+    const route=marbleRoute(lane,()=>random);assert.equal(route.xs.length,route.ys.length);
+    assert.ok(route.xs.every(x=>x>=20&&x<=300));assert.ok(route.ys.every((y,i)=>i===0||y>route.ys[i-1]));
+    assert.ok(route.slot>=0&&route.slot<7);assert.equal(route.score,marbleScores[route.slot]);assert.equal(route.xs.at(-1),40+route.slot*40);
+  }
+});
+test('reaction average rounds to milliseconds and handles an empty run', () => {
+  assert.equal(averageReaction([]),0);assert.equal(averageReaction([201,200,205]),202);assert.equal(averageReaction([0,0,0]),0);
 });
 test('fast pixel strokes include endpoints and leave no gaps', () => {
   for (const [from,to] of [[0,255],[15,240],[0,15],[0,240],[119,119],[18,251]]) {
